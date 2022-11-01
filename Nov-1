@@ -1,0 +1,33 @@
+int median(vector<vector<int>> &matrix, int R, int C){
+        int maxEl = INT_MIN, minEl = INT_MAX;
+        
+        for(int i = 0; i < R; i++){
+            if(matrix[i][0] < minEl) minEl = matrix[i][0];
+            if(matrix[i][C-1] > maxEl) maxEl = matrix[i][C-1];
+        }
+        
+        int expected = (R * C + 1)/2;
+        while(minEl < maxEl){
+            int mid = minEl + (maxEl-minEl) / 2;
+            
+            int count = 0;
+            for(int i = 0; i < R; i++){
+                int l=0,r=C-1;
+                while(l<r){
+                    int m=(l+r)/2;
+                    if(matrix[i][m]<=mid){
+                        l=m+1;
+                    }else{
+                        r=m;
+                    }
+                }
+                if(matrix[i][l]<=mid){
+                    count++;
+                }
+                count+=l;
+            }
+            if(count < expected) minEl = mid+1;
+            else maxEl = mid;
+        }
+        return minEl;
+    }
