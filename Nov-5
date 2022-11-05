@@ -1,0 +1,23 @@
+int maxGroupSize(int arr[], int N, int K) {
+        // code here
+        int rem[k];
+        memset(rem, 0, sizeof(rem));
+        for(int i=0; i<n; i++){
+            rem[ arr[i]%k ]++;
+        }
+
+        int ans=0;
+        int i=1, j=k-1;
+       //pick max of (i, k-i)
+        while(i<j){
+            ans+= max(rem[i++], rem[j--]);
+        }
+        if(rem[0]!=0){
+            ans++;
+        }
+        // if k is even pick the middle element only one time as
+        //(k/2+k/2)%k=0;
+        if((k&1)==0 and rem[k/2]) ans++;
+        
+        return ans;
+    }
