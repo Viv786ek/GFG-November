@@ -1,0 +1,23 @@
+long long int m = 1000000007;
+class Solution{
+public:
+    int totalWays(int n, vector<int>v) {
+        
+        sort(v.begin(), v.end());
+        long long int ans = v[0];
+        int i=0;
+        for(auto &val:v)
+        {
+            val-=i;
+            if (val > 0 and i!=0)
+            {
+                
+                ans *= val;
+                ans = ans%m;
+            }
+            else if (val<=0){ans=0; break;}
+            i++;
+        }
+        return ans;
+    }
+};
