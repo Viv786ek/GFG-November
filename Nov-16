@@ -1,0 +1,47 @@
+int beautySum(string s) {
+
+        // Your code goes here
+
+        unordered_map<char,int> mp;
+
+       
+
+        int ans=0;
+
+        for(int i=0;i<s.size();i++){
+
+            for(int j=i;j<s.size();j++){
+
+                mp[s[j]]++;
+
+                 int max=INT_MIN;
+
+        int min=INT_MAX;
+
+                for(auto it:mp){
+
+                if(it.second>max){
+
+                    max=it.second;
+
+                }
+
+                if(it.second<min)
+
+                min=it.second;
+
+            }
+
+              ans+=max-min;
+
+            }
+
+           
+
+            mp.clear();
+
+        }
+
+        return ans;
+
+    }
