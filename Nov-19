@@ -1,0 +1,30 @@
+ void levelOrder(Node *root, vector<pair<int, int> > &v) {
+        if(!root) {return;}
+        queue<Node*> q;
+        q.push(root);
+        int level=0;
+        while(!q.empty()) {
+            int size=q.size();
+            while(size--) {
+                Node *curr=q.front(); q.pop();
+                if(curr->left) {
+                    q.push(curr->left);
+                }
+                if(curr->right) {
+                    q.push(curr->right);
+                }
+                v.push_back({level, curr->data});
+            }
+            level++;
+        }
+    } 
+    
+    public:
+    bool areAnagrams(Node *root1, Node *root2) {
+        vector<pair<int, int> > a, b;
+        levelOrder(root1, a);
+        levelOrder(root2, b);
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+        return a==b;
+    }
